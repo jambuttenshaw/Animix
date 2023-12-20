@@ -1,5 +1,7 @@
 # Animix
 
+[View Demo on YouTube](https://youtu.be/WvJ-sozoGK8)
+
 A 3D skeletal animation engine built on top of GEF (Games Education Framework by Abertay University).
 
 Support for blend trees, state machines, animation parameters, ragdoll physics and more.
