@@ -1,0 +1,63 @@
+{
+  "frameRate": 24,
+  "name": "boy-attack",
+  "version": "5.5",
+  "compatibleVersion": "5.5",
+  "armature": [
+    {
+      "type": "Sheet",
+      "frameRate": 6,
+      "name": "boy-attack",
+      "aabb": {
+        "x": -75,
+        "y": -75,
+        "width": 150,
+        "height": 150
+      },
+      "bone": [ { "name": "root" } ],
+      "slot": [
+        {
+          "displayIndex": 3,
+          "name": "sheetSlot",
+          "parent": "root"
+        }
+      ],
+      "skin": [
+        {
+          "slot": [
+            {
+              "name": "sheetSlot",
+              "display": [
+                { "name": "4_attack_0" },
+                { "name": "4_attack_1" },
+                { "name": "4_attack_2" },
+                { "name": "4_attack_3" },
+                { "name": "4_attack_4" }
+              ]
+            }
+          ]
+        }
+      ],
+      "animation": [
+        {
+          "duration": 6,
+          "playTimes": 0,
+          "name": "boy-attack",
+          "slot": [
+            {
+              "name": "sheetSlot",
+              "displayFrame": [
+                {},
+                { "value": 1 },
+                { "value": 2 },
+                { "value": 3 },
+                { "value": 4 }
+              ]
+            }
+          ]
+        }
+      ],
+      "defaultActions": [ { "gotoAndPlay": "boy-attack" } ]
+    }
+  ]
+}

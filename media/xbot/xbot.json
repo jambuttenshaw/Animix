@@ -1,0 +1,279 @@
+{
+  "param": [
+    {
+      "name": "walkSpeed",
+      "default": 0.0
+    },
+    {
+      "name": "walkDir",
+      "default": 0.0
+    },
+    {
+      "name": "injured",
+      "default": 0.0
+    }
+  ],
+
+  "state": [
+    {
+      "name": "idle",
+
+      "tree": {
+        "type": "linearBlend",
+        "input": [
+          {
+            "type": "clipSample",
+            "clip": "idle",
+            "looping": true
+          },
+          {
+            "type": "clipSample",
+            "clip": "idleInjured",
+            "looping": true
+          }
+        ],
+        "observer": [
+          {
+            "name": "alpha",
+            "param": "injured"
+          }
+        ]
+      },
+
+      "transition": [
+        {
+          "name": "walk",
+          "destination": "walk",
+          "type": "smooth",
+          "duration": 0.5
+        },
+        {
+          "name": "jump",
+          "destination": "jump",
+          "type": "smooth",
+          "duration": 0.2
+        },
+        {
+          "name": "death",
+          "destination": "assassination",
+          "type": "smooth",
+          "duration": 0.2
+        }
+      ]
+    },
+
+    {
+      "name": "walk",
+
+      "tree": {
+        "type": "bilinearBlend",
+        "input": [
+          {
+            "type": "generalLinearBlend",
+            "inputAlpha": [
+              {
+                "input": 0,
+                "alpha": -1.0
+              },
+              {
+                "input": 1,
+                "alpha": 0.0
+              },
+              {
+                "input": 2,
+                "alpha": 1.0
+              }
+            ],
+            "input": [
+              {
+                "type": "clipSample",
+                "clip": "strafeWalkLeft",
+                "looping": true
+              },
+              {
+                "type": "clipSample",
+                "clip": "walking",
+                "looping": true
+              },
+              {
+                "type": "clipSample",
+                "clip": "strafeWalkRight",
+                "looping": true
+              }
+            ],
+            "observer": [
+              {
+                "name": "alpha",
+                "param": "walkDir"
+              }
+            ]
+          },
+          {
+            "type": "generalLinearBlend",
+            "inputAlpha": [
+              {
+                "input": 0,
+                "alpha": -1.0
+              },
+              {
+                "input": 1,
+                "alpha": 0.0
+              },
+              {
+                "input": 2,
+                "alpha": 1.0
+              }
+            ],
+            "input": [
+              {
+                "type": "clipSample",
+                "clip": "strafeLeft",
+                "looping": true
+              },
+              {
+                "type": "clipSample",
+                "clip": "running",
+                "looping": true
+              },
+              {
+                "type": "clipSample",
+                "clip": "strafeRight",
+                "looping": true
+              }
+            ],
+            "observer": [
+              {
+                "name": "alpha",
+                "param": "walkDir"
+              }
+            ]
+          },
+          {
+            "type": "clipSample",
+            "clip": "walkingInjured",
+            "looping": true
+          },
+          {
+            "type": "clipSample",
+            "clip": "runningInjured",
+            "looping": true
+          }
+        ],
+        "observer": [
+          {
+            "name": "alpha",
+            "param": "walkSpeed"
+          },
+          {
+            "name": "beta",
+            "param": "injured"
+          }
+        ]
+      },
+
+      "transition": [
+        {
+          "name": "idle",
+          "destination": "idle",
+          "type": "smooth",
+          "duration": 0.5
+        },
+        {
+          "name": "jump",
+          "destination": "runJump",
+          "type": "smooth",
+          "duration": 1.25
+        },
+        {
+          "name": "death",
+          "destination": "death",
+          "type": "frozen",
+          "duration": 0.2
+        }
+      ]
+    },
+
+    {
+      "name": "jump",
+
+      "tree": {
+        "type": "clipSample",
+        "clip": "jump"
+      },
+
+      "transition": [
+        {
+          "name": "land",
+          "destination": "idle",
+          "type": "smooth",
+          "duration": 1.0
+        },
+        {
+          "name": "death",
+          "destination": "death",
+          "type": "frozen",
+          "duration": 0.2
+        }
+      ],
+      "endTransition": "land"
+    },
+
+    {
+      "name": "runJump",
+
+      "tree": {
+        "type": "clipSample",
+        "clip": "jump"
+      },
+
+      "transition": [
+        {
+          "name": "land",
+          "destination": "walk",
+          "type": "smooth",
+          "duration": 1.25
+        },
+        {
+          "name": "death",
+          "destination": "death",
+          "type": "frozen",
+          "duration": 0.2
+        }
+      ],
+      "endTransition": "land"
+    },
+
+    {
+      "name": "assassination",
+
+      "tree": {
+        "type": "clipSample",
+        "clip": "death"
+      },
+
+      "transition": [
+        {
+          "name": "end",
+          "destination": "death"
+        }
+      ],
+      "endTransition": "end"  
+
+    },
+
+    {
+      "name": "death",
+
+      "tree": {
+        "type": "ragdoll"
+      },
+
+      "transition": [
+        {
+          "name": "respawn",
+          "destination": "idle"
+        }
+      ]
+    }
+  ]
+}

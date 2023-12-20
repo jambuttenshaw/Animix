@@ -1,0 +1,63 @@
+{
+  "width": 256,
+  "imagePath": "boy-attack_tex.png",
+  "height": 512,
+  "name": "boy-attack",
+  "SubTexture": [
+    {
+      "frameY": -45,
+      "y": 99,
+      "frameWidth": 150,
+      "frameX": -9,
+      "frameHeight": 150,
+      "width": 96,
+      "height": 90,
+      "name": "4_attack_2",
+      "x": 105
+    },
+    {
+      "frameY": -45,
+      "y": 191,
+      "frameWidth": 150,
+      "frameX": -42,
+      "frameHeight": 150,
+      "width": 75,
+      "height": 90,
+      "name": "4_attack_0",
+      "x": 84
+    },
+    {
+      "frameY": -45,
+      "y": 1,
+      "frameWidth": 150,
+      "frameX": 0,
+      "frameHeight": 150,
+      "width": 108,
+      "height": 96,
+      "name": "4_attack_4",
+      "x": 105
+    },
+    {
+      "frameY": -45,
+      "y": 105,
+      "frameWidth": 150,
+      "frameX": -45,
+      "frameHeight": 150,
+      "width": 81,
+      "height": 90,
+      "name": "4_attack_1",
+      "x": 1
+    },
+    {
+      "frameY": -48,
+      "y": 1,
+      "frameWidth": 150,
+      "frameX": -3,
+      "frameHeight": 150,
+      "width": 102,
+      "height": 102,
+      "name": "4_attack_3",
+      "x": 1
+    }
+  ]
+}
